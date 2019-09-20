@@ -1,0 +1,43 @@
+#wrapper {
+    margin: 0 auto;
+}
+
+#message {
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-left: 400px;
+}
+
+input {
+    margin: 0 auto;
+}
+
+#header {
+    border-bottom: 2px solid black;
+    padding: 10px;
+}
+
+h1 {
+    display: inline-block;
+}
+
+h2 {
+    display: inline-block;
+    margin-left: 600px;
+}
+
+#header a {
+    margin-left: 100px;
+}
+
+#activity {
+    margin-left: 400px;
+}
+
+#msg {
+    margin-left: 10px;
+}
+#delete{
+    margin-left: 325px;
+}
+

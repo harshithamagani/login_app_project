@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Wall page</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'login_app/css/style.css' %}">
+</head>
+<body>
+    <div id= header> 
+        <h1>Coding Dojo Wall</h1>
+        <h2>Welcome {{user.first_name}}</h2>
+        <a href="/logout">Logout</a>
+    </div>
+    <div id="wrapper">
+        <form action="/post" method="POST">
+            {% csrf_token %}
+            <textarea id="message" name="message" rows="4" cols="50"></textarea>
+            <input type="submit" name="submit" value="Post a Message">
+        </form>
+        <div id="activity">
+            {% for message in messages %}
+            <p>{{message.user.first_name}} {{message.user.last_name}} - {{message.created_at}}</p>
+            <p id="msg" class="msg_width">{{message.message}}</p>
+            {% if  message.user.id == request.session.userid %}
+            <form action="/delete" method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="msg_id" value={{message.id}}>
+                <input type="submit" name="submit" value="Delete">
+            </form>
+            {% endif %}
+
+            {% for comment in message.message_comments.all %}
+                <p class="msg_width">{{comment.comment}}</p>
+            {% endfor %}
+            <form action="/comment" method="POST">
+                {% csrf_token %}
+                <textarea name="comment" rows="2" cols="50"></textarea>
+                <input type="submit" name="submit" value="Comment">
+                <input type="hidden" name="msg_id" value={{message.id}}>
+            </form>
+            {% endfor %}
+
+        </div>
+    </div>
+</body>
+</html>

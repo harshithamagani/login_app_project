@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login Form</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <style>
+        #wrapper{
+            width: 950px;
+            margin: 0 auto;
+        }
+        #register{
+            display: inline-block;
+            width: 400px;
+        }
+        #login{
+            display :inline-block;
+            width: 464px;
+            vertical-align: top;
+        }
+        .error{
+            color: red;
+        }
+    </style>
+    <script>
+// $(document).ready(function(){
+//   $("#register_submit").click(function(){
+//     firstname = $("#first_name").val()
+//     console.log(firstname)
+//   });
+//   $("#login_submit").click(function(){
+//     alert("HTML:");
+//   });
+// });
+    </script>
+</head>
+<body>
+    <div id="wrapper">
+        <div id="register">
+                {% if messages %}
+                <ul class="messages">    
+                    {% for message in messages %}    
+                        <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            <form action="/register" method="POST">
+                {% csrf_token %}
+                <h1>Registration</h1>
+                <input name="form" type="hidden" value="register">
+                First Name: <input id="first_name" name="first_name" type="text"><br><br>
+                Last Name: <input id="last_name" name="last_name" type="text"><br><br>
+                Email : <input id="email" name="email" type="text"><br><br>
+                Password : <input id="password" name="password" type="text"><br><br>
+                Confirm PW : <input id="confirm_password" name="confirm_password" type="text"><br><br>
+                <input id="register_submit" name="submit" type="submit" value="Register">
+            </form>
+        </div>
+        <div id="login">
+                <form action="/login" method="POST">
+                {% csrf_token %}
+                    <h1>Login</h1>
+                    <input name="form" type="hidden" value="login">
+                    Email : <input name="email" type="text"><br><br>
+                    Password : <input name="password" type="text"><br><br>
+                    <input id="login_submit" name="submit" type="submit" value="Login">
+                </form> 
+        </div>
+    </div>
+</body>
+</html>
