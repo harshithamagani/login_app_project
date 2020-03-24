@@ -1,5 +1,5 @@
 bcrypt==3.1.7
-bleach==3.1.0
+bleach==3.1.2
 bleach-whitelist==0.0.10
 cffi==1.12.3
 Django==1.10
